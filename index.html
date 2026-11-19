@@ -3,13 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello World</title>
+  <title>Contatos protegidos</title>
 </head>
 <body>
-  <h1>Hello World!</h1>
-  <ul>
-    <li>Kelyn — +55 19 97132-4637</li>
-    <li>Julia — +55 19 99943-5119</li>
-  </ul>
+  <h1>Contatos</h1>
+
+  <form id="login-form">
+    <label for="password">Digite a senha para ver os contatos:</label>
+    <input id="password" type="password" required autocomplete="current-password">
+    <button type="submit">Entrar</button>
+    <p id="error" role="alert" hidden>Senha incorreta.</p>
+  </form>
+
+  <section id="contacts" hidden>
+    <ul>
+      <li>Kelyn — +55 19 97132-4637</li>
+      <li>Julia — +55 19 99943-5119</li>
+    </ul>
+  </section>
+
+  <script>
+    const password = "1234";
+    const form = document.getElementById("login-form");
+    const input = document.getElementById("password");
+    const contacts = document.getElementById("contacts");
+    const error = document.getElementById("error");
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (input.value === password) {
+        contacts.hidden = false;
+        form.hidden = true;
+      } else {
+        error.hidden = false;
+        input.select();
+      }
+    });
+  </script>
 </body>
 </html>
